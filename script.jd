@@ -1,0 +1,25 @@
+// ... (Kode sebelumnya di script.js)
+
+uploadButton.addEventListener('click', function() {
+    const file = fileInput.files[0];
+
+    if (file) {
+        statusUnggah.textContent = "Mengunggah...";
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const dataURLGambar = e.target.result;
+
+            // Simpan data URL gambar di localStorage
+            localStorage.setItem('buktiTransaksi', dataURLGambar);
+
+            // Alihkan ke halaman "web controlled"
+            window.location.href = 'controlled.html';
+        }
+
+        reader.readAsDataURL(file);
+
+    } else {
+        statusUnggah.textContent = "Pilih file terlebih dahulu.";
+    }
+});
